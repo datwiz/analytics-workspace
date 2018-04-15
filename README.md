@@ -7,6 +7,24 @@ The following services are provided in the workspace:
 * PostgreSQL database
 * PGAdmin postgres SQL client and database admin tool
 
+## Environment and directories
+### workspace root directory
+The analytics workspace runs from a workspace root directory identified by the env var `WORKSPACE_ROOT_DIR`
+`WORKSPACE_ROOT_DIR` can either be set explicitly or the defaults to the current working directory.
+
+### directories
+* postgresql database data `${WORKSPACE_ROOT_DIR}/data/postgresql/data`
+* pgadmin config `${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin
+* jupyter notebooks `${WORKSPACE_ROOT_DIR}/notebooks`
+
+## Starting and Stopping Services
+### starting services
+`./bin/wsctl start`
+
+### stoping services
+`./bin/wsctl stop`
+Note that the containers will be recreated again on start.
+
 ## Accessing Services
 ### Jupyter Notebook
 ```
