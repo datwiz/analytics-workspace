@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+
+export WORKSPACE_ROOT_DIR="${WORKSPACE_ROOT_DIR:-$(pwd)}"
+
+usage_error() {
+  msg=${1}
+  echo "Usage error: ${msg}"
+  echo
+  echo "Usage: wsctl [ start | stop | status ]"
+  echo "       workspace control actions"
+  exit 1
+}
+
+
+if [[ $# -ne 1 ]];
+then
+  usage_error "incorrect number of arguments"
+fi
+
+echo "Using workspace: ${WORKSPACE_ROOT_DIR}"
+
+action=${1}
+case ${action} in
+  start)
+    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml up -d
+    ;;
+  stop)
+    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml down
+    ;;
+  status)
+    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps
+    ;;
+  *)
+    usage_error "unrecognised action ${action}"
+esac
