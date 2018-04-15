@@ -1,0 +1,17 @@
+# anything tmp
+tmp/*
+*.tmp
+
+# vi swp files
+.*.swp
+
+# ignore the postgres data files
+data/db/pgdata
+
+# notebooks working files
+.bash_history
+notebooks/.local/*
+.ipnb_checkpoints/*
+
+# the postgresql database files
+data/postgresql/data/*
