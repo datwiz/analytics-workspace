@@ -11,7 +11,9 @@ data/db/pgdata
 # notebooks working files
 .bash_history
 notebooks/.local/*
-.ipnb_checkpoints/*
+**/.ipynb_checkpoints/*
+**/.ipython/*
+**/.jupyter/*
 
 # the postgresql database files
 data/postgresql/data/*
