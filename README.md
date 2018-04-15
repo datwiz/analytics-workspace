@@ -7,6 +7,33 @@ The following services are provided in the workspace:
 * PostgreSQL database
 * PGAdmin postgres SQL client and database admin tool
 
+## Accessing Services
+### Jupyter Notebook
+```
+http://localhost:8888/tree
+```
+
+### Jupyter Lab
+```
+http://localhost:8888/lab
+```
+
+### PostgreSQL
+Database connections 
+```
+localhost:5432 from the desktopn
+db:5432 from within the containers
+username: <local_login>
+password: password
+```
+
+### PGAdmin 4
+```
+http://localhost:8080
+username: <local_login>
+password: password
+```
+
 ## Container Implementation
 The workspace makes use of docker containers and docker-compose to manage and deliver workspace services.
 The workspace is intended to be used in conjunction with *Docker for Mac*.  Docker for Mac restricts access
