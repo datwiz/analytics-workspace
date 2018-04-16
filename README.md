@@ -14,7 +14,8 @@ The following services are provided in the workspace:
 * PGAdmin postgres SQL client and database admin tool
 
 ## Getting Started
-1.  Make a copy of the analytics workspace project
+1.  Make a copy of the analytics workspace project\
+Open a terminal window and change to the directory where the workspace is to be created.
 ```
 # cd to the directory where the workplace will be created
 git clone https://github.com/datwiz/analytics-workspace.git workspace
@@ -33,17 +34,24 @@ Refer to [Accessing Services](#access) for details on accessing the services.
 
 ## About the workspace
 ### directories
-* postgresql database data `${WORKSPACE_ROOT_DIR}/data/postgresql/data`
-* pgadmin config `${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin
-* jupyter notebooks `${WORKSPACE_ROOT_DIR}/notebooks`
+* `${WORKSPACE_ROOT_DIR}/data/postgresql/data`     postgresql database data
+* `${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin`  pgadmin config and session data
+* `${WORKSPACE_ROOT_DIR}/notebooks`                jupyter notebooks and lab config and notebook data
 
-## Starting and Stopping Services
-### starting services
-`./bin/wsctl start`
+### Starting and Stopping Services
+The `wsctl` utility manages the services in the workspace.
 
-### stoping services
-`./bin/wsctl stop`
-Note that the containers will be recreated again on start.
+#### starting services
+`./bin/wsctl start`\
+Starts the container services.  If the services are already running, then the status is displayed.
+
+#### stoping services
+`./bin/wsctl stop`\
+Stops the services and removes the containers.  Note that the containers will be recreated again on start.
+
+#### check service status
+`./bin/wsctl status`\
+Provides the runtime status of the workspace services.
 
 ## <a name="access" />Accessing Services
 ### Jupyter Notebook
@@ -57,7 +65,7 @@ http://localhost:8888/lab
 ```
 
 ### PostgreSQL
-Database connections 
+Database access, e.g. for use with JDBC or ODBC connections.
 ```
 localhost:5432 from the desktopn
 db:5432 from within the containers
