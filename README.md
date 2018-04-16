@@ -51,15 +51,24 @@ Starts the container services.  If the services are already running, then the st
 
 #### stoping services
 `./bin/wsctl stop`\
-Stops the services and removes the containers.  Note that the containers will be recreated again on start.
+Stops the services.  The service containers remain and can be started again.
+
+#### restarting services
+`./bin/wsctl restart`\
+Stops the services, if running, and starts the services again.
+
+#### reseting services
+`./bin/wsctl reset`\
+Stops the services and removes the containers.  Note that new containers will be recreated again on start.
 
 #### check service status
 `./bin/wsctl status`\
 Provides the runtime status of the workspace services.
 
 ## <a name="access" />Accessing Services
-The services are configured to startup using the local username to run and access services. Running `whoami`
-in the terminal can be used to check the local username. 
+The services are configured to startup using the local username to run and access services.\
+Running `whoami` in the terminal can be used to check the local username. 
+
 As the services are only available from the localhost, simple default values for access passwords are used.
 Different username / password credentials can be set by editing the `docker-compose.yml` file.
 

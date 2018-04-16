@@ -7,11 +7,13 @@ set -e
 usage_error() {
   error_msg=${1}
   [[ ! -z ${error_msg}  ]] && echo "wsctl: ${error_msg}"
-  echo  "Usage: wsctl {COMMAND}"
-  echo  "Commands:"
-  echo  "  start   start the analytics workspace services"
-  echo  "  stop    stop the analytics workspace services"
-  echo  "  status  show runtime status of anlaytics workspace services"
+  echo "Usage: wsctl {COMMAND}"
+  echo "Commands:"
+  echo "  start    start the analytics workspace services"
+  echo "  stop     stop the analytics workspace services"
+  echo "  restart  restart the analytics workspace services"
+  echo "  reset    stop services and remove the analytics workspace services containers"
+  echo "  status   show runtime status of anlaytics workspace services"
   exit 1
 }
 
@@ -20,7 +22,7 @@ usage_error() {
 
 action=${1}
 case ${action} in
-  start|stop|status) ;;
+  start|stop|restart|reset|status) ;;
   *) usage_error "unrecognised action \"${action}\"" ;;
 esac
 
@@ -28,17 +30,31 @@ esac
 SRC_ROOT_DIR="$(cd "$(dirname "${0}")/../."; pwd -P)"
 # enable override if desired
 export WORKSPACE_ROOT_DIR="${WORKSPACE_ROOT_DIR:-${SRC_ROOT_DIR}}"
-echo "Using workspace: ${WORKSPACE_ROOT_DIR}"
+echo "wsctl: using workspace: ${WORKSPACE_ROOT_DIR}"
+echo "wsctl: using username: ${USER}"
 
 case ${action} in
   start)
     docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml up -d
+    echo "wsctl: services started"
     ;;
   stop)
+    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml stop
+    echo "wsctl: services stopped"
+    ;;
+  restart)
+    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml restart
+    echo "wsctl: services restarted"
+    ;;
+  reset)
     docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml down
+    echo "wsctl: services reset and ready to be started."
     ;;
   status)
     docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps
+    svc_cnt=`docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps -q | wc -l`
+    up_cnt=`docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps | grep " Up " | wc -l`
+    echo "wsctl: $((up_cnt)) of $((svc_cnt)) services running"
     ;;
   *)
     usage_error "how did I get here with action: \"${action}\""
