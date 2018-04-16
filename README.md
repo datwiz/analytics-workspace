@@ -3,9 +3,9 @@ The Analytics Workspace provides a quick start environment for analytics work on
 provided in the workspace are Docker container based with data and config directories linked to the local
 filesystem.
 
-*WARNING:* This workspace is inteneded to be used in conjunction with Docker for Mac.  If this workspace is deployed
-to a different Docker environment, such as a linux native environment, the security settings for the services
-MUST be modified to enable security required when services are able to accessed from beyond the local host OS.
+*WARNING:* This workspace is intended to be used in conjunction with *Docker for Mac*.  If this workspace is deployed
+to a different Docker environment, such as a linux native environment, the security settings MUST be modified to enable
+security required when services are able to accessed from beyond the local host OS.
 
 ## Analytics Workspace Services
 The following services are provided in the workspace:
@@ -38,7 +38,11 @@ Refer to [Accessing Services](#access) for details on accessing the services.
 * `${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin`  pgadmin config and session data
 * `${WORKSPACE_ROOT_DIR}/notebooks`                jupyter notebooks and lab config and notebook data
 
-### Starting and Stopping Services
+### docker images
+The docker images are pegged to the version tags current as of 16-Apr-18.  To use different docker
+images, modify the `docker-compose.yml` file and change the tags to the desired versions.
+
+### starting and stopping services
 The `wsctl` utility manages the services in the workspace.
 
 #### starting services
@@ -54,12 +58,18 @@ Stops the services and removes the containers.  Note that the containers will be
 Provides the runtime status of the workspace services.
 
 ## <a name="access" />Accessing Services
+The services are configured to startup using the local username run and access services.  As the services
+are only available from the localhost, simple default values for access passwords are used.  Different
+username / password credentials can be set by editing the `docker-compose.yml` file.
+
 ### Jupyter Notebook
+The classical Jupyter notebook.
 ```
 http://localhost:8888/tree
 ```
 
 ### Jupyter Lab
+The new Jupyter lab.
 ```
 http://localhost:8888/lab
 ```
@@ -74,12 +84,9 @@ password: password
 ```
 
 ### PGAdmin 4
+Admin and SQL client
 ```
 http://localhost:8080
 username: <local_login>
 password: password
 ```
-
-## Useful docker and docker-compose commands
-### docker
-### docker-compose
