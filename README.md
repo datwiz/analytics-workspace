@@ -58,9 +58,10 @@ Stops the services and removes the containers.  Note that the containers will be
 Provides the runtime status of the workspace services.
 
 ## <a name="access" />Accessing Services
-The services are configured to startup using the local username to run and access services.  As the services
-are only available from the localhost, simple default values for access passwords are used.  Different
-username / password credentials can be set by editing the `docker-compose.yml` file.
+The services are configured to startup using the local username to run and access services. Running `whoami`
+in the terminal can be used to check the local username. 
+As the services are only available from the localhost, simple default values for access passwords are used.
+Different username / password credentials can be set by editing the `docker-compose.yml` file.
 
 ### Jupyter Notebook
 The classical Jupyter notebook.

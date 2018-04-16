@@ -2,6 +2,8 @@
 
 set -e
 
+# TODO: now that restart fix has been merged into the container, update the commands
+#       to enable start, stop, and remove containers
 usage_error() {
   error_msg=${1}
   [[ ! -z ${error_msg}  ]] && echo "wsctl: ${error_msg}"
