@@ -1,5 +1,11 @@
 # Local Analytics Workspace
-Provides a standard set of local services for an analytics workspace.
+The Analytics Workspace provides a quick start environment for analytics work on a local desktop.  Services
+provided in the workspace are Docker container based with data and config directories linked to the local
+filesystem.
+
+*WARNING:* This workspace is inteneded to be used in conjunction with Docker for Mac.  If this workspace is deployed
+to a different Docker environment, such as a linux native environment, the security settings for the services
+MUST be modified to enable security required when services are able to accessed from beyond the local host OS.
 
 ## Analytics Workspace Services
 The following services are provided in the workspace:
@@ -7,11 +13,25 @@ The following services are provided in the workspace:
 * PostgreSQL database
 * PGAdmin postgres SQL client and database admin tool
 
-## Environment and directories
-### workspace root directory
-The analytics workspace runs from a workspace root directory identified by the env var `WORKSPACE_ROOT_DIR`
-`WORKSPACE_ROOT_DIR` can either be set explicitly or the defaults to the current working directory.
+## Getting Started
+1.  Make a copy of the analytics workspace project
+```
+# cd to the directory where the workplace will be created
+git clone https://github.com/datwiz/analytics-workspace.git workspace
+```
 
+2.  Start the services
+```
+# cd into the workspace directory
+cd workspace
+# start the services
+./bin/wsctl start
+```
+
+3.  Use the services
+Access the services from your local browser.  Refer to [Accessing Services](#access) for details.
+
+## About the workspace
 ### directories
 * postgresql database data `${WORKSPACE_ROOT_DIR}/data/postgresql/data`
 * pgadmin config `${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin
@@ -25,7 +45,7 @@ The analytics workspace runs from a workspace root directory identified by the e
 `./bin/wsctl stop`
 Note that the containers will be recreated again on start.
 
-## Accessing Services
+## <a name="access" />Accessing Services
 ### Jupyter Notebook
 ```
 http://localhost:8888/tree
@@ -52,10 +72,6 @@ username: <local_login>
 password: password
 ```
 
-## Container Implementation
-The workspace makes use of docker containers and docker-compose to manage and deliver workspace services.
-The workspace is intended to be used in conjunction with *Docker for Mac*.  Docker for Mac restricts access
-to the workspace services to the local environment, protecting services and data from external access.
-
-*WARNING:* If this workspace is deployed to a different Docker environment, such as a linux native environment,
-the security settings for the services MUST be modified to enable security required for secure external access.
+## Useful docker and docker-compose commands
+### docker
+### docker-compose
