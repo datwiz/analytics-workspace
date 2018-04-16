@@ -28,8 +28,8 @@ cd workspace
 ./bin/wsctl start
 ```
 
-3.  Use the services
-Access the services from your local browser.  Refer to [Accessing Services](#access) for details.
+3.  Use the services\
+Refer to [Accessing Services](#access) for details on accessing the services.
 
 ## About the workspace
 ### directories
