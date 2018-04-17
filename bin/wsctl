@@ -35,15 +35,9 @@ echo "wsctl: using username: ${USER}"
 
 ############## ensure required directories exist ##############
 # ensure the postgresql data directory exists
-if [[ ! -d ${WORKSPACE_ROOT_DIR}/data/postgresql/data ]];
-then
-  install -d ${WORKSPACE_ROOT_DIR}/data/postgresql/data
-fi
+[ ! -d ${WORKSPACE_ROOT_DIR}/data/postgresql/data ] && install -d ${WORKSPACE_ROOT_DIR}/data/postgresql/data
 # ensure the pgadmin data directory exists
-if [[ ! -d ${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin ]];
-then
-  install -d ${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin
-fi
+[ ! -d ${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin ] && install -d ${WORKSPACE_ROOT_DIR}/data/postgresql/pgadmin
 
 ############## do the work ##############
 case ${action} in

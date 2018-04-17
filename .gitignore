@@ -18,3 +18,6 @@ notebooks/.local/*
 # the postgresql database files
 data/postgresql/data/*
 data/postgresql/pgadmin/*
+
+# ignore notebooks
+**/*.ipynb

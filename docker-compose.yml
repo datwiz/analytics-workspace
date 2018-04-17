@@ -22,7 +22,7 @@ services:
     environment:
       POSTGRES_USER: "${USER}"
       POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "postgres"
+      POSTGRES_DB: "datalab"
     volumes:
       - ${WORKSPACE_ROOT_DIR}/data/postgresql/data:/var/lib/postgresql/data
     ports:
