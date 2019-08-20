@@ -14,6 +14,7 @@ notebooks/.local/*
 **/.ipynb_checkpoints/*
 **/.ipython/*
 **/.jupyter/*
+notebooks/*
 
 # the postgresql database files
 data/postgresql/data/*

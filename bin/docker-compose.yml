@@ -4,7 +4,7 @@ services:
   datascience-notebook:
     user: root
     hostname: 'datascience-notebook'
-    image: 'jupyter/datascience-notebook:9f9e5ca8fe5a'
+    image: 'jupyter/datascience-notebook:2ce7c06a61a1'
     command: ['/usr/local/bin/start-notebook.sh', '--NotebookApp.token=']
     environment:
       TZ: "/usr/share/zoneinfo/Australia/Melbourne"
