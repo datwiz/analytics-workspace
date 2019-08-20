@@ -42,25 +42,25 @@ echo "wsctl: using username: ${USER}"
 ############## do the work ##############
 case ${action} in
   start)
-    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml up -d
+    docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml up -d
     echo "wsctl: services started"
     ;;
   stop)
-    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml stop
+    docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml stop
     echo "wsctl: services stopped"
     ;;
   restart)
-    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml restart
+    docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml restart
     echo "wsctl: services restarted"
     ;;
   reset)
-    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml down
+    docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml down
     echo "wsctl: services reset and ready to be started."
     ;;
   status)
-    docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps
-    svc_cnt=`docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps -q | wc -l`
-    up_cnt=`docker-compose -f ${WORKSPACE_ROOT_DIR}/docker-compose.yml ps | grep " Up " | wc -l`
+    docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml ps
+    svc_cnt=`docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml ps -q | wc -l`
+    up_cnt=`docker-compose -f ${SRC_ROOT_DIR}/bin/docker-compose.yml ps | grep " Up " | wc -l`
     echo "wsctl: $((up_cnt)) of $((svc_cnt)) services running"
     ;;
   *)
